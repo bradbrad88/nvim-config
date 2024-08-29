@@ -76,7 +76,7 @@ return {
 			})
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver" },
+				ensure_installed = { "tsserver", "esline_d", "tailwindcss", "prettier" },
 				handlers = {
 					-- this first function is the "default handler"
 					-- it applies to every language server without a "custom handler"
