@@ -1,3 +1,4 @@
 require("config.lazy")
 require("config.keymap")
-vim.cmd [[colorscheme moonfly]]
+require("config.references")
+vim.cmd([[colorscheme moonfly]])
