@@ -20,10 +20,15 @@ return {
 		event = "InsertEnter",
 		dependencies = {
 			{ "L3MON4D3/LuaSnip" },
+			{ "neovim/nvim-lspconfig" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-cmdline" },
+			{ "saadparwaiz1/cmp_luasnip" },
 		},
 		config = function()
 			local cmp = require("cmp")
-
 			cmp.setup({
 				sources = {
 					{ name = "nvim_lsp" },
@@ -54,9 +59,6 @@ return {
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
-
-			-- lsp_attach is where you enable features that only work
-			-- if there is a language server active in the file
 			local lsp_attach = function(_, bufnr)
 				local opts = { buffer = bufnr }
 				lsp_keymaps(opts)
