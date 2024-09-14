@@ -8,6 +8,10 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		tag = "0.1.8",
+		config = function()
+			local telescope = require("telescope.builtin")
+			keymaps(telescope)
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",

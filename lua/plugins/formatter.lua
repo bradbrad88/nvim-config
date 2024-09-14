@@ -6,6 +6,7 @@
 -- }
 
 
+local keymaps = require("config.keymap").conform_keymaps
 return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
@@ -41,5 +42,6 @@ return {
 	end,
 	opts = function()
 		return require("config.format")
+		keymaps(conform)
 	end,
 }

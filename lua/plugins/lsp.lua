@@ -1,3 +1,6 @@
+local keymaps = require("config.keymap").cmp
+local lsp_keymaps = require("config.keymap").lsp
+
 return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -26,7 +29,6 @@ return {
 					{ name = "nvim_lsp" },
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-u>"] = cmp.mapping.scroll_docs(-4),
 					["<C-d>"] = cmp.mapping.scroll_docs(4),
 				}),
@@ -36,6 +38,7 @@ return {
 					end,
 				},
 			})
+			keymaps(cmp)
 		end,
 	},
 
@@ -56,17 +59,7 @@ return {
 			-- if there is a language server active in the file
 			local lsp_attach = function(_, bufnr)
 				local opts = { buffer = bufnr }
-				vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-				vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-				vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-				require("lspconfig").gleam.setup({})
-				vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-				vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-				vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-				vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-				vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-				vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-				vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+				lsp_keymaps(opts)
 			end
 
 			lsp_zero.extend_lspconfig({
