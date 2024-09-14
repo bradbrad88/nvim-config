@@ -68,6 +68,7 @@ return {
 				sign_text = true,
 				lsp_attach = lsp_attach,
 				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				inlay_hints = { enabled = false },
 			})
 
 			require("mason-lspconfig").setup({
