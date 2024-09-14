@@ -77,6 +77,9 @@ local function filter_definitions(params, cb, err_cb)
 				print(vim.inspect(err))
 				return err_cb(err)
 			end
+			if not definitions then
+				return err_cb()
+			end
 			if not skip_def_check then
 				definition_belongs_to_current_buffer = every(definitions, function(definition)
 					return string.match(definition.targetUri, params.uri)
