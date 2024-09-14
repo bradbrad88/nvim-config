@@ -25,9 +25,20 @@ return {
 			end,
 		})
 
-		vim.keymap.set("n", "<leader>l", function()
-			lint.try_lint()
-		end, { desc = "Trigger linting for current file" })
+		vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
+			pattern = "*",
+			callback = function()
+				vim.diagnostic.setloclist({ open = false })
+			end,
+		})
+
+		vim.diagnostic.config({
+			signs = true,
+			virtual_text = false,
+			float = {
+				source = true,
+			},
+		})
 
 		keymaps(lint)
 	end,
