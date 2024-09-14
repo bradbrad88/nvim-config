@@ -71,19 +71,17 @@ return {
 			})
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver", "esline_d", "tailwindcss", "prettier" },
+				ensure_installed = { "ts_ls", "eslint", "tailwindcss" },
 				handlers = {
-					-- this first function is the "default handler"
-					-- it applies to every language server without a "custom handler"
 					function(server_name)
 						require("lspconfig")[server_name].setup({})
 					end,
 
-					tsserver = function()
+					ts_ls = function()
 						local lspconfig = require("lspconfig")
 						local util = require("lspconfig.util")
 
-						lspconfig.tsserver.setup({
+						lspconfig.ts_ls.setup({
 							on_attach = function(client, bufnr)
 								client.server_capabilities.document_formatting = false
 								client.server_capabilities.document_range_formatting = false
